@@ -1,0 +1,39 @@
+{
+  "name": "openislamicdb-api",
+  "version": "1.0.0",
+  "description": "The API server and database of OpenIslamicDB.",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha 'lib/**/*.test.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/openislamicdb/api.git"
+  },
+  "keywords": [
+    "islam",
+    "database",
+    "open-source",
+    "muslim",
+    "encylopedia",
+    "islamic",
+    "history"
+  ],
+  "author": "Ahmad Amireh",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/openislamicdb/api/issues"
+  },
+  "homepage": "https://github.com/openislamicdb/api#readme",
+  "dependencies": {
+    "helmet": "2.0.0",
+    "koa": "2.0.0",
+    "koa-helmet": "2.0.0-alpha.1",
+    "koa-router": "7.0.1",
+    "orientjs": "2.2.0-beta2"
+  },
+  "devDependencies": {
+    "eslint": "2.9.0",
+    "nsp": "2.4.0"
+  }
+}
