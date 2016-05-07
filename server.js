@@ -1,15 +1,26 @@
-const Koa = require('koa');
-const app = new Koa();
-const router = require('koa-router')();
+require('./env');
+const app = require('./lib');
 
-router.get('/', function(ctx) {
-  ctx.body = { online: true };
+function cleanup(options) {
+  return function(err) {
+    if (options.cleanup) {
+      app.context.dba.disconnect();
+    }
+
+    if (err) {
+      console.error(err && err.stack ? err.stack : err);
+    }
+
+    if (options.exit) {
+      process.exit();
+    }
+  };
+}
+
+process.on('exit', cleanup({ cleanup: true }));
+process.on('SIGINT', cleanup({ exit: true }));
+
+app.context.dba.connect().then(function() {
+  app.listen(3000);
 });
 
-app
-  .use(require('koa-helmet')())
-  .use(router.routes())
-  .use(router.allowedMethods())
-;
-
-app.listen(3000);

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+[ ! -f package.json ] && {
+  echo "$0: must be run from root."
+  exit 1
+}
+
+for file in ".env" ".env.local"
+do
+  [ -f "${file}" ] && source "${file}"
+done
+
+./node_modules/.bin/orientjs \
+  --host $DB_HOST \
+  --port $DB_PORT \
+  --dbname $DB_NAME \
+  --dbuser $DB_USERNAME \
+  --dbpassword $DB_PASSWORD $@
